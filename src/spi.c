@@ -66,17 +66,8 @@ void mcp2515_spi_init(void)
 {
 	#ifndef USE_SOFTWARE_SPI
 		// Aktivieren des SPI Master Interfaces
-    
-        #ifdef(__AVR_ATmega328P__)
-            // Set MOSI(PB3), SCK(PB5) and SS(PB2) as Output
-            DDRB|=(1<<PB2)|(1<<PB3)|(1<<PB5);
-            PORTB|=(1<<PB2);
-
-            // Initializate SPI without interrupt
-            SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0);
-        #elif
-            SPCR = (1<<SPE)|(1<<MSTR) | R_SPCR;
-            SPSR = R_SPSR;
+		SPCR = (1<<SPE)|(1<<MSTR) | R_SPCR;
+		SPSR = R_SPSR;
 	#endif
 }
 
